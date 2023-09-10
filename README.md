@@ -7,3 +7,4 @@ Project on base poetry for sky
 
 Разработка ведется в develop и рабочая версия мержится в main
 
+Продолжение
