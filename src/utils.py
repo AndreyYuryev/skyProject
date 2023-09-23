@@ -15,3 +15,13 @@ def get_operations(filename='operations.json', folder='../data'):
         with open(file=filepath, encoding='utf-8', mode='r') as file:
             operation_list = json.load(file)
         return operation_list
+
+
+def get_sorted_list(ilist):
+    '''
+    Вернуть отсортированный по дате лист, поле date
+    :param ilist: список операций
+    :return: отсортированный по дате список операций, по убыванию
+    '''
+    sorted_list = sorted(ilist)
+    return sorted_list
