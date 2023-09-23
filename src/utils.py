@@ -23,5 +23,6 @@ def get_sorted_list(ilist):
     :param ilist: список операций
     :return: отсортированный по дате список операций, по убыванию
     '''
-    sorted_list = sorted(ilist)
+    sorted_list = []
+    sorted_list = sorted(ilist,key=lambda d: d['date'], reverse=True)
     return sorted_list
