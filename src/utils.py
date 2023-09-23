@@ -42,3 +42,7 @@ def get_last_executed(ilist, max_operations=5):
             elenght += 1
         index += 1
     return elist
+
+
+def get_formatted_operation(ioperation):
+    pass
