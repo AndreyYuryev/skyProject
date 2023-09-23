@@ -2,7 +2,8 @@ from src.utils import (get_operations,
                        get_sorted_list,
                        get_last_executed,
                        get_formatted_operation,
-                       hide_account_number)
+                       hide_account_number,
+                       hide_card_number)
 
 
 def test_file_is_exist():
@@ -68,3 +69,8 @@ def test_get_formatted_operation():
 def test_hide_number():
     assert hide_account_number('64686473678894779589') == '**9589'
     assert hide_account_number('') == ''
+
+
+def test_hide_card():
+    assert hide_card_number('1596837868705199') == '1596 83** **** 5199'
+    assert hide_card_number('') == ''
