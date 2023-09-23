@@ -87,4 +87,9 @@ def hide_account_number(inumber:str):
 
 def hide_card_number(icard:str):
     ecard = []
-    return ''.join(ecard)
+    if icard:
+        ecard.append(icard[slice(0, 4)])
+        ecard.append(''.join([icard[slice(4, 6)], '**']))
+        ecard.append('****')
+        ecard.append(icard[slice(12, 16)])
+    return ' '.join(ecard)
