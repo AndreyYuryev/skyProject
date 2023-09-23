@@ -1,4 +1,4 @@
-from src.utils import get_operations, get_sorted_list
+from src.utils import get_operations, get_sorted_list, get_last_executed
 
 
 def test_file_is_exist():
@@ -15,3 +15,21 @@ def test_get_sorted_list():
                    {"id": 1, "date": "2018-06-30T02:08:58.425572"}]
     assert get_sorted_list(unsorted_list) == sorted_list
     assert get_sorted_list([]) == []
+
+
+def test_last_operations():
+    full_list = [{"id": 1, "state": "EXECUTED"},
+                 {"id": 2, "state": "EXECUTED"},
+                 {"id": 3, "state": "CANCELED"},
+                 {"id": 4, "state": "EXECUTED"},
+                 {"id": 5, "state": "CANCELED"},
+                 {"id": 6, "state": "EXECUTED"},
+                 {"id": 7, "state": "EXECUTED"},
+                 {"id": 8, "state": "EXECUTED"}]
+    last_list = [{"id": 1, "state": "EXECUTED"},
+                 {"id": 2, "state": "EXECUTED"},
+                 {"id": 4, "state": "EXECUTED"},
+                 {"id": 6, "state": "EXECUTED"},
+                 {"id": 7, "state": "EXECUTED"}]
+    assert get_last_executed(full_list) == last_list
+    assert get_last_executed([]) == []
