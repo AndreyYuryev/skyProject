@@ -25,7 +25,7 @@ def get_sorted_list(ilist):
     :return: отсортированный по дате список операций, по убыванию
     '''
     sorted_list = []
-    sorted_list = sorted(ilist, key=lambda d: d['date'], reverse=True)
+    sorted_list = sorted(ilist, key=lambda d: d.get('date', '0000-00-00T00:00:00.000000'), reverse=True)
     return sorted_list
 
 
@@ -38,14 +38,20 @@ def get_last_executed(ilist, max_operations=5):
     ilenght = len(ilist)
     elenght = 0
     while index < ilenght and elenght < max_operations:
-        if ilist[index]['state'] == 'EXECUTED':
-            elist.append(ilist[index])
-            elenght += 1
+        if ilist[index].get('date') is not None \
+                and ilist[index].get('state') is not None \
+                and ilist[index].get('from') is not None \
+                and ilist[index].get('to') is not None \
+                and ilist[index].get('description') is not None \
+                and ilist[index].get('operationAmount') is not None:
+            if ilist[index]['state'] == 'EXECUTED':
+                elist.append(ilist[index])
+                elenght += 1
         index += 1
     return elist
 
 
-def get_formatted_operation(ioperation:dict):
+def get_formatted_operation(ioperation: dict):
     '''
     Функция составляет список из выводимых полей для операции
     :param ioperation: словарь с данными операции
@@ -65,18 +71,26 @@ def get_formatted_operation(ioperation:dict):
         # описание
         elist.append(description)
         # отправитель
-        elist.append(operation_from[0])
-        elist.append(operation_from[1])
+        if len(operation_from) == 2:
+            elist.append(operation_from[0])
+            elist.append(operation_from[1])
+        else:
+            elist.append(' '.join(operation_from[:-1]))
+            elist.append(operation_from[-1])
         # получатель
-        elist.append(operation_to[0])
-        elist.append(operation_to[1])
+        if len(operation_to) == 2:
+            elist.append(operation_to[0])
+            elist.append(operation_to[1])
+        else:
+            elist.append(' '.join(operation_to[:-1]))
+            elist.append(operation_to[-1])
         # сумма и валюта
         elist.append(amount)
         elist.append(currency)
     return elist
 
 
-def hide_account_number(inumber:str):
+def hide_account_number(inumber: str):
     enumber = []
     if inumber:
         enumber.append('**')
@@ -85,7 +99,7 @@ def hide_account_number(inumber:str):
     return ''.join(enumber)
 
 
-def hide_card_number(icard:str):
+def hide_card_number(icard: str):
     ecard = []
     if icard:
         ecard.append(icard[slice(0, 4)])
