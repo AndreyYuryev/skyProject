@@ -74,3 +74,17 @@ def get_formatted_operation(ioperation:dict):
         elist.append(amount)
         elist.append(currency)
     return elist
+
+
+def hide_account_number(inumber:str):
+    enumber = []
+    if inumber:
+        enumber.append('**')
+        sliced_number = slice(16, 20)
+        enumber.append(inumber[sliced_number])
+    return ''.join(enumber)
+
+
+def hide_card_number(icard:str):
+    ecard = []
+    return ''.join(ecard)
