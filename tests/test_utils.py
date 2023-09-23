@@ -1,4 +1,7 @@
-from src.utils import get_operations, get_sorted_list, get_last_executed
+from src.utils import (get_operations,
+                       get_sorted_list,
+                       get_last_executed,
+                       get_formatted_operation)
 
 
 def test_file_is_exist():
@@ -33,3 +36,29 @@ def test_last_operations():
                  {"id": 7, "state": "EXECUTED"}]
     assert get_last_executed(full_list) == last_list
     assert get_last_executed([]) == []
+
+
+def test_get_formatted_operation():
+    operation = {"id": 441945886,
+                 "state": "EXECUTED",
+                 "date": "2019-08-26T10:50:58.294041",
+                 "operationAmount": {
+                     "amount": "31957.58",
+                     "currency": {
+                         "name": "руб.",
+                         "code": "RUB"
+                     }
+                 },
+                 "description": "Перевод организации",
+                 "from": "Maestro 1596837868705199",
+                 "to": "Счет 64686473678894779589"}
+    formatted_operation = ['26.08.2019',
+                           'Перевод организации',
+                           'Maestro',
+                           '1596837868705199',
+                           'Счет',
+                           '64686473678894779589',
+                           '31957.58',
+                           'руб.']
+    assert get_formatted_operation(operation) == formatted_operation
+    assert get_formatted_operation({}) == []
