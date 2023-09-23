@@ -23,19 +23,21 @@ def test_get_sorted_list():
 
 
 def test_last_operations():
-    full_list = [{"id": 1, "state": "EXECUTED"},
-                 {"id": 2, "state": "EXECUTED"},
-                 {"id": 3, "state": "CANCELED"},
-                 {"id": 4, "state": "EXECUTED"},
-                 {"id": 5, "state": "CANCELED"},
-                 {"id": 6, "state": "EXECUTED"},
-                 {"id": 7, "state": "EXECUTED"},
-                 {"id": 8, "state": "EXECUTED"}]
-    last_list = [{"id": 1, "state": "EXECUTED"},
-                 {"id": 2, "state": "EXECUTED"},
-                 {"id": 4, "state": "EXECUTED"},
-                 {"id": 6, "state": "EXECUTED"},
-                 {"id": 7, "state": "EXECUTED"}]
+    full_list = [
+        {"id": 1, "state": "EXECUTED", "date": "", "from": "", "to": "", "description": "", "operationAmount": ""},
+        {"id": 2, "state": "EXECUTED", "date": "", "from": "", "to": "", "description": "", "operationAmount": ""},
+        {"id": 3, "state": "CANCELED", "date": "", "from": "", "to": "", "description": "", "operationAmount": ""},
+        {"id": 4, "state": "EXECUTED", "date": "", "from": "", "to": "", "description": "", "operationAmount": ""},
+        {"id": 5, "state": "CANCELED", "date": "", "from": "", "to": "", "description": "", "operationAmount": ""},
+        {"id": 6, "state": "EXECUTED", "date": "", "from": "", "to": "", "description": "", "operationAmount": ""},
+        {"id": 7, "state": "EXECUTED", "date": "", "from": "", "to": "", "description": "", "operationAmount": ""},
+        {"id": 8, "state": "EXECUTED", "date": "", "from": "", "to": "", "description": "", "operationAmount": ""}]
+    last_list = [
+        {"id": 1, "state": "EXECUTED", "date": "", "from": "", "to": "", "description": "", "operationAmount": ""},
+        {"id": 2, "state": "EXECUTED", "date": "", "from": "", "to": "", "description": "", "operationAmount": ""},
+        {"id": 4, "state": "EXECUTED", "date": "", "from": "", "to": "", "description": "", "operationAmount": ""},
+        {"id": 6, "state": "EXECUTED", "date": "", "from": "", "to": "", "description": "", "operationAmount": ""},
+        {"id": 7, "state": "EXECUTED", "date": "", "from": "", "to": "", "description": "", "operationAmount": ""}]
     assert get_last_executed(full_list) == last_list
     assert get_last_executed([]) == []
 
