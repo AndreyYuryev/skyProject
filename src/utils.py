@@ -1,5 +1,6 @@
 import json
 import os
+from datetime import datetime
 
 
 def get_operations(filename='operations.json', folder='../data'):
@@ -44,5 +45,32 @@ def get_last_executed(ilist, max_operations=5):
     return elist
 
 
-def get_formatted_operation(ioperation):
-    pass
+def get_formatted_operation(ioperation:dict):
+    '''
+    Функция составляет список из выводимых полей для операции
+    :param ioperation: словарь с данными операции
+    :return: список с полями
+    '''
+    elist = []
+    if ioperation:
+        operation_date = ioperation['date']
+        idatetime = datetime.fromisoformat(operation_date)
+        description = ioperation['description']
+        operation_from = ioperation['from'].split()
+        operation_to = ioperation['to'].split()
+        amount = ioperation['operationAmount']['amount']
+        currency = ioperation['operationAmount']['currency']['name']
+        # дата
+        elist.append(idatetime.strftime("%d.%m.%Y"))
+        # описание
+        elist.append(description)
+        # отправитель
+        elist.append(operation_from[0])
+        elist.append(operation_from[1])
+        # получатель
+        elist.append(operation_to[0])
+        elist.append(operation_to[1])
+        # сумма и валюта
+        elist.append(amount)
+        elist.append(currency)
+    return elist
