@@ -24,5 +24,21 @@ def get_sorted_list(ilist):
     :return: отсортированный по дате список операций, по убыванию
     '''
     sorted_list = []
-    sorted_list = sorted(ilist,key=lambda d: d['date'], reverse=True)
+    sorted_list = sorted(ilist, key=lambda d: d['date'], reverse=True)
     return sorted_list
+
+
+def get_last_executed(ilist, max_operations=5):
+    '''
+    Вернуть пять последних по дате операций EXECUTED
+    '''
+    elist = []
+    index = 0
+    ilenght = len(ilist)
+    elenght = 0
+    while index < ilenght and elenght < max_operations:
+        if ilist[index]['state'] == 'EXECUTED':
+            elist.append(ilist[index])
+            elenght += 1
+        index += 1
+    return elist
