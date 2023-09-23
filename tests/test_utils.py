@@ -1,7 +1,8 @@
 from src.utils import (get_operations,
                        get_sorted_list,
                        get_last_executed,
-                       get_formatted_operation)
+                       get_formatted_operation,
+                       hide_account_number)
 
 
 def test_file_is_exist():
@@ -62,3 +63,8 @@ def test_get_formatted_operation():
                            'руб.']
     assert get_formatted_operation(operation) == formatted_operation
     assert get_formatted_operation({}) == []
+
+
+def test_hide_number():
+    assert hide_account_number('64686473678894779589') == '**9589'
+    assert hide_account_number('') == ''
