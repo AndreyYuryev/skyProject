@@ -7,11 +7,19 @@ from src.utils import (get_operations,
 
 
 def test_file_is_exist():
+    '''
+    Проверка доступен ли файл
+    :return:
+    '''
     assert get_operations('operations.json', 'data') is not None
     assert get_operations('operation.json', 'data') is None
 
 
 def test_get_sorted_list():
+    '''
+    Проверка сортируется ли список по дате
+    :return:
+    '''
     unsorted_list = [{"id": 1, "date": "2018-06-30T02:08:58.425572"},
                      {"id": 2, "date": "2019-07-03T18:35:29.512364"},
                      {"id": 3, "date": "2019-08-26T10:50:58.294041"}]
@@ -23,6 +31,10 @@ def test_get_sorted_list():
 
 
 def test_last_operations():
+    '''
+    Проверка выбирается ли пять последних выполненных операций
+    :return:
+    '''
     full_list = [
         {"id": 1, "state": "EXECUTED", "date": "", "from": "", "to": "", "description": "", "operationAmount": ""},
         {"id": 2, "state": "EXECUTED", "date": "", "from": "", "to": "", "description": "", "operationAmount": ""},
@@ -43,6 +55,10 @@ def test_last_operations():
 
 
 def test_get_formatted_operation():
+    '''
+    Проверка вернуть список на основе полей словаря
+    :return:
+    '''
     operation1 = {"id": 441945886,
                   "state": "EXECUTED",
                   "date": "2019-08-26T10:50:58.294041",
@@ -91,10 +107,18 @@ def test_get_formatted_operation():
 
 
 def test_hide_number():
+    '''
+    Проверка скрыть номер счета
+    :return:
+    '''
     assert hide_account_number('64686473678894779589') == '**9589'
     assert hide_account_number('') == ''
 
 
 def test_hide_card():
+    '''
+    Проверка скрыть номер карты
+    :return:
+    '''
     assert hide_card_number('1596837868705199') == '1596 83** **** 5199'
     assert hide_card_number('') == ''

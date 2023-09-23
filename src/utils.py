@@ -91,6 +91,11 @@ def get_formatted_operation(ioperation: dict):
 
 
 def hide_account_number(inumber: str):
+    '''
+    Скрыть полный номер счета по заданному алгоритму ** XXXX
+    :param inumber: номер счета
+    :return: скрытый номер счета
+    '''
     enumber = []
     if inumber:
         enumber.append('**')
@@ -100,6 +105,11 @@ def hide_account_number(inumber: str):
 
 
 def hide_card_number(icard: str):
+    '''
+    Скрыть номер карты по заданному алгоритму XXXX XX** **** XXXX
+    :param icard: номер карты
+    :return: скрытый номер карты
+    '''
     ecard = []
     if icard:
         ecard.append(icard[slice(0, 4)])
