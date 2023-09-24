@@ -117,3 +117,18 @@ def hide_card_number(icard: str):
         ecard.append('****')
         ecard.append(icard[slice(12, 16)])
     return ' '.join(ecard)
+
+
+def card_or_account(number_type:str, number:str):
+    '''
+    Возвращает замаскированый номер счета или карты
+    :param number_type: тип счета или карты
+    :param number: номер
+    :return: скрытый номер
+    '''
+    if number == "":
+        return ""
+    if number_type == 'Счет':
+        return hide_account_number(number)
+    else:
+        return hide_card_number(number)
