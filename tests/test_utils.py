@@ -3,7 +3,8 @@ from src.utils import (get_operations,
                        get_last_executed,
                        get_formatted_operation,
                        hide_account_number,
-                       hide_card_number)
+                       hide_card_number,
+                       card_or_account)
 
 
 def test_file_is_exist():
@@ -122,3 +123,13 @@ def test_hide_card():
     '''
     assert hide_card_number('1596837868705199') == '1596 83** **** 5199'
     assert hide_card_number('') == ''
+
+
+def test_account_or_card():
+    '''
+    Проверка счет или аккаунт
+    :return:
+    '''
+    assert card_or_account('Счет', '64686473678894779589') == '**9589'
+    assert card_or_account('Visa', '1596837868705199') == '1596 83** **** 5199'
+    assert card_or_account('Visa', '') == ''
