@@ -1,11 +1,10 @@
-from src.utils import (get_operations,
-                       get_sorted_list,
-                       get_last_executed,
-                       get_formatted_operation,
-                       hide_account_number,
-                       hide_card_number,
-                       card_or_account)
-
+from skyProject.utils import (get_operations,
+                              get_sorted_list,
+                              get_last_executed,
+                              get_formatted_operation,
+                              hide_account_number,
+                              hide_card_number,
+                              card_or_account)
 
 def test_file_is_exist():
     '''

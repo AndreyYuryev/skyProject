@@ -2,8 +2,7 @@ import json
 import os
 from datetime import datetime
 
-
-def get_operations(filename='operations.json', folder='../data'):
+def get_operations(filename='operations.json', folder='data'):
     '''
     Прочитать файл с выпиской операций и вернуть список с операциями
     :param filename имя json-файла
@@ -11,7 +10,11 @@ def get_operations(filename='operations.json', folder='../data'):
     :return список содержащий операции
     '''
     operation_list = []
-    filepath = os.path.join(folder, filename)
+    # получить корневую дирректорию
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    root_dir = os.path.split(os.path.split(current_dir)[0])[0]
+
+    filepath = os.path.join(root_dir, os.path.normpath(folder), filename)
     if os.path.isfile(filepath):
         with open(file=filepath, encoding='utf-8', mode='r') as file:
             operation_list = json.load(file)
