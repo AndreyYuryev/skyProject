@@ -15,8 +15,11 @@ def main():
         hided_acc_from = utils.card_or_account(formatted_operation[2], formatted_operation[3])
         hided_acc_to = utils.card_or_account(formatted_operation[4], formatted_operation[5])
         print(formatted_operation[0], formatted_operation[1])
-        print(formatted_operation[2], hided_acc_from,
-              '->', formatted_operation[4], hided_acc_to)
+        if formatted_operation[2] == '':
+            print(formatted_operation[4], hided_acc_to)
+        else:
+            print(formatted_operation[2], hided_acc_from,
+                  '->', formatted_operation[4], hided_acc_to)
         print(formatted_operation[6], formatted_operation[7])
         print("")
 
