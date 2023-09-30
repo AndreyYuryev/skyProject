@@ -103,6 +103,30 @@ def test_get_formatted_operation():
                             '56883.54',
                             'USD']
     assert get_formatted_operation(operation2) == formatted_operation2
+    operation3 = {
+        "id": 587085106,
+        "state": "EXECUTED",
+        "date": "2018-03-23T10:45:06.972075",
+        "operationAmount": {
+            "amount": "48223.05",
+            "currency": {
+                "name": "руб.",
+                "code": "RUB"
+            }
+        },
+        "description": "Открытие вклада",
+        "to": "Счет 41421565395219882431"
+    }
+    formatted_operation3 = ['23.03.2018',
+                            'Открытие вклада',
+                            '',
+                            '',
+                            'Счет',
+                            '41421565395219882431',
+                            '48223.05',
+                            'руб.']
+    assert get_formatted_operation(operation3) == formatted_operation3
+
     assert get_formatted_operation({}) == []
 
 
