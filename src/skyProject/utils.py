@@ -43,7 +43,7 @@ def get_last_executed(ilist, max_operations=5):
     while index < ilenght and elenght < max_operations:
         if ilist[index].get('date') is not None \
                 and ilist[index].get('state') is not None \
-                and ilist[index].get('from') is not None \
+                and ilist[index].get('from', '') is not None \
                 and ilist[index].get('to') is not None \
                 and ilist[index].get('description') is not None \
                 and ilist[index].get('operationAmount') is not None:
@@ -65,7 +65,6 @@ def get_formatted_operation(ioperation: dict):
         operation_date = ioperation['date']
         idatetime = datetime.fromisoformat(operation_date)
         description = ioperation['description']
-        operation_from = ioperation['from'].split()
         operation_to = ioperation['to'].split()
         amount = ioperation['operationAmount']['amount']
         currency = ioperation['operationAmount']['currency']['name']
@@ -74,12 +73,17 @@ def get_formatted_operation(ioperation: dict):
         # описание
         elist.append(description)
         # отправитель
-        if len(operation_from) == 2:
-            elist.append(operation_from[0])
-            elist.append(operation_from[1])
+        if ioperation.get('from'):
+            operation_from = ioperation['from'].split()
+            if len(operation_from) == 2:
+                elist.append(operation_from[0])
+                elist.append(operation_from[1])
+            else:
+                elist.append(' '.join(operation_from[:-1]))
+                elist.append(operation_from[-1])
         else:
-            elist.append(' '.join(operation_from[:-1]))
-            elist.append(operation_from[-1])
+            elist.append('')
+            elist.append('')
         # получатель
         if len(operation_to) == 2:
             elist.append(operation_to[0])
